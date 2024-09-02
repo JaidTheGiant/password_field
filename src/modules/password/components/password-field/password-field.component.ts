@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PasswordService } from '../../services/password.service';
 
 @Component({
   selector: 'app-password-field',
@@ -7,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './password-field.component.css'
 })
 export class PasswordFieldComponent {
+  password: string = '';
 
+  constructor(private passwordService: PasswordService){};
+
+  checkPassword(){
+    console.log(this.password);
+    console.log(this.passwordService.validatePassword(this.password));
+  }
 }

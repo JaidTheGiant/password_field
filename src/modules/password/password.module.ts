@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { FormsModule } from "@angular/forms";
 
 import * as passwordContainers from './containers';
 import * as passwordComponents from  './components';
@@ -7,7 +8,8 @@ import * as passwordServices from './services';
 
 @NgModule({
     imports: [
-        RouterModule
+        RouterModule,
+        FormsModule,
     ],
     providers: [
         ...passwordServices.services
