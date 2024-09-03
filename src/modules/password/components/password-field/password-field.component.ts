@@ -14,6 +14,6 @@ export class PasswordFieldComponent {
 
   checkPassword(){
     console.log(this.password);
-    console.log(this.passwordService.validatePassword(this.password));
+    this.passwordService.validatePassword(this.password);
   }
 }
