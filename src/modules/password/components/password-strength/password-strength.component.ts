@@ -10,16 +10,22 @@ import { OnInit } from '@angular/core';
   styleUrl: './password-strength.component.css'
 })
 export class PasswordStrengthComponent implements OnInit{
+    // Holds imported color set
     colors = colorSet;
 
     constructor(private passwordService: PasswordService){};
 
+    // Funtion that changes UI of strength line.
+    // Holds references of label and array of strength levels to be able to change their attributes
+    //
+    // Looks awful
     ngOnInit(){
       let message = document.getElementById('password-message');
       let levels = Array.from(document.getElementsByClassName('level'));
 
       this.passwordService.passwordStrength.subscribe(value => {
         switch (value) {
+          // visual separation between cases
           case 'Password is too short':
             if(message){
               message.classList.remove('invisible', 'collapse');
@@ -31,6 +37,7 @@ export class PasswordStrengthComponent implements OnInit{
               levels.forEach(level => level.setAttribute('style', `background-color: ${this.colors.RED}`))
             }
             break;
+          // visual separation between cases
           case 'Password is easy':
             if(message){
               message.classList.remove('invisible', 'collapse');
@@ -48,6 +55,7 @@ export class PasswordStrengthComponent implements OnInit{
               )
             }
             break;
+          // visual separation between cases
           case 'Password is medium':
             if(message){
               message.classList.remove('invisible', 'collapse');
@@ -65,6 +73,7 @@ export class PasswordStrengthComponent implements OnInit{
               )
             }
             break;
+          // visual separation between cases
           case 'Password is strong':
             if(message){
               message.classList.remove('invisible', 'collapse');
@@ -75,6 +84,7 @@ export class PasswordStrengthComponent implements OnInit{
               levels.forEach(level => level.setAttribute('style', `background-color: ${this.colors.GREEN}`))
             }
             break;
+          // visual separation between cases
           default:
             if(message){
               message.classList.add('invisible', 'collapse');
