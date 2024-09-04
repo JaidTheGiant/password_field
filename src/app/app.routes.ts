@@ -10,7 +10,7 @@ export const routes: Routes = [
     {
         path: 'password',
         loadChildren: () => 
-            import('../modules/password/password_routing.module').then(m => m.PasswordRoutingModule),
+            import('./password/password_routing.module').then(m => m.PasswordRoutingModule),
     }
 ];
 
