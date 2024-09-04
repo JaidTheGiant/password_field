@@ -1,6 +1,6 @@
-import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, Inject, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import * as colorSet from '../../../../color_set';
-import { PasswordService } from '../../services/password.service';
+import { Password } from '../../interfaces/password.interface';
 import { OnInit } from '@angular/core';
 
 @Component({
@@ -16,7 +16,7 @@ export class PasswordStrengthComponent implements OnInit{
     @ViewChild('password_message') message!: ElementRef;
     @ViewChildren('strength_level') levels!: QueryList<any>;
 
-    constructor(private passwordService: PasswordService){};
+    constructor(@Inject('Password') private passwordService: Password){};
 
     // Funtion that changes UI of strength line.
     // Holds references of label and array of strength levels to be able to change their attributes

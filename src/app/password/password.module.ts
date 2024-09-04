@@ -2,9 +2,10 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 
+import { PasswordService } from "./services/password.service";
+
 import * as passwordContainers from './containers';
 import * as passwordComponents from  './components';
-import * as passwordServices from './services';
 
 @NgModule({
     imports: [
@@ -12,7 +13,7 @@ import * as passwordServices from './services';
         FormsModule,
     ],
     providers: [
-        ...passwordServices.services
+        { provide: 'Password', useClass: PasswordService}
     ],
     declarations: [
         ...passwordContainers.containers,

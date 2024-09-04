@@ -1,5 +1,6 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { PasswordService } from '../../services/password.service';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
+// import { PasswordService } from '../../services/password.service';
+import { Password } from '../../interfaces/password.interface';
 
 @Component({
   selector: 'app-password-field',
@@ -14,8 +15,7 @@ export class PasswordFieldComponent {
   @ViewChild('password_field') password_field!: ElementRef;
   @ViewChild('show_hide_image') button_image!: ElementRef;
 
-  constructor(private passwordService: PasswordService){};
-  
+  constructor(@Inject('Password') private passwordService: Password){};
   // Call for service function to check entered password
   checkPassword(){
     this.passwordService.validatePassword(this.password);
@@ -23,18 +23,12 @@ export class PasswordFieldComponent {
 
   // Function that changes visibility of password field. Also changes image on button
   changePasswordVisibility(){
-    // let password_field = document.getElementById('password_field');
-    if(this.password_field){
-      if(this.password_field.nativeElement.type == 'password'){
-        this.password_field.nativeElement.type = 'input'; 
-        //  setAttribute('type', 'input');
-        this.button_image.nativeElement.src = 'assets/hide.png';
-        // document.getElementById('show_hide_image')?.setAttribute('src', 'assets/hide.png')
-      }else{
-        this.password_field.nativeElement.type = 'password';
-        this.button_image.nativeElement.src = 'assets/show.png';
-        // document.getElementById('show_hide_image')?.setAttribute('src', 'assets/show.png')
-      }
+    if(this.password_field.nativeElement.type == 'password'){
+      this.password_field.nativeElement.type = 'input';
+      this.button_image.nativeElement.src = 'assets/hide.png';
+    }else{
+      this.password_field.nativeElement.type = 'password';
+      this.button_image.nativeElement.src = 'assets/show.png';
     }
   }
 }

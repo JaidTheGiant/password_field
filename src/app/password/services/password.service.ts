@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Password } from '../interfaces/password.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PasswordService {
+export class PasswordService implements Password {
   // Regular expresions to find numbers, letters and special symbols in password
   private types = {
     numbers: /\d/,
